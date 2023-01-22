@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Index from './components/Index';
+import store from './redux/store';
+import Alert from './widgets/Alert';
+import axios from 'axios';
+import { setAuthToken } from './repositories/SecurityRepository';
+
+axios.defaults.baseURL = 'https://cryptopyramid.azurewebsites.net/api/v1';
 
 function App() {
+  const token = localStorage.getItem("token");
+  if (token) {
+      setAuthToken(token);
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+        <Alert>
+          <HashRouter>
+            <Routes>
+              <Route path="*" element={<Index />} />
+            </Routes>
+          </HashRouter>
+        </Alert>
+    </Provider>
   );
 }
 
