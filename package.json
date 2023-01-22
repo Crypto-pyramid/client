@@ -1,7 +1,7 @@
 {
   "name": "crypto_pyramid",
   "version": "0.1.0",
-  "homepage": "https://Crypto-pyramid.github.io/client/#",
+  "homepage": "https://Crypto-pyramid.com",
   "private": true,
   "dependencies": {
     "@ctrl/react-adsense": "^1.6.1",
