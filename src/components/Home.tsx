@@ -49,7 +49,7 @@ function Home() {
       <h4>
       CryptoPyramid is a web3 project that simulates a pyramid scheme. Each user that is invited is asked to pay 0.01ETH of accession fee in order to join the pyramid. Only after he pays he is able to invite others. For every person that joins using his invitation the user immediately receives one third of his accession fee. This means that after three successful invitations, you have already earned back the money you spent to join. The remaining 2 thirds are evenly divided among the pyramid branch.
       </h4>
-      <iframe width={width <=1024 ? width-100 : 1024} height={(width <=1024 ? width-100 : 1024)*0.56} src="" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      <iframe width={width <=1024 ? width-100 : 1024} height={(width <=1024 ? width-100 : 1024)*0.56} src="https://www.youtube.com/embed/RCkqkvrIwDI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       {width < 1550 &&
       <div className={classes.adsDeskopHorizontal}>
         <Adsense
