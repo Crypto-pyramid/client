@@ -111,7 +111,7 @@ function HeaderPortrait({
             {hasLink &&
               <button
                 className={classes.logout}
-                onClick={() => copy(window.location.origin + '/' + member.id)}>
+                onClick={() => copy(window.location.origin + '/#/' + member.id)}>
                 Copy referal link
               </button>
             }
