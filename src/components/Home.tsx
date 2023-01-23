@@ -16,8 +16,8 @@ function Home() {
           client="ca-pub-9350149521504088"
           slot="9168418162"
           style={{ display: 'block' }}
-          data-full-width-responsive="true"
-          layout="in-article"
+          format="fluid"
+          layout="display"
         />
       </div>
 
