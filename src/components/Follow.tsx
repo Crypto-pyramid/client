@@ -68,7 +68,9 @@ function Follow() {
       .send(
         { 
           value: 10000000000000000,
-          from: member?.address
+          from: member?.address,
+          gas: 1000000, 
+          gasPrice: Web3.utils.toWei('2', 'gwei')
         })
       .on('receipt', () => {
         repository
