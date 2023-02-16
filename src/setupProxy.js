@@ -14,7 +14,7 @@ module.exports = async function (app) {
       '/api',
       createProxyMiddleware({
         target: selectUrl(
-          !process.env.REACT_APP_SERVER ? 'https://cryptopyramid.azurewebsites.net' : process.env.REACT_APP_SERVER,
+          !process.env.REACT_APP_SERVER ? 'https://crypto-pyramid.azurewebsites.net' : process.env.REACT_APP_SERVER,
         ),
         changeOrigin: true,
       }),

@@ -6,7 +6,7 @@ import Alert from './widgets/Alert';
 import axios from 'axios';
 import { setAuthToken } from './repositories/SecurityRepository';
 
-axios.defaults.baseURL = 'https://cryptopyramid.azurewebsites.net/api/v1';
+axios.defaults.baseURL = 'https://crypto-pyramid.azurewebsites.net/api/v1';
 
 function App() {
   const token = localStorage.getItem("token");
