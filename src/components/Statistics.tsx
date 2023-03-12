@@ -7,7 +7,7 @@ import { Pagination } from '../utils/Pagination';
 import { numberFormat } from '../models';
 import { Adsense } from '@ctrl/react-adsense';
 import useWindowDimensions from '../widgets/useWindowDimensions';
-
+import loading from '../assets/loading.gif';
 
 function Statistics() {
   
@@ -108,57 +108,64 @@ function Statistics() {
         </div>
       }
       <h1>Statistics</h1>
-      <div className={classes.cc}>
-          <div className={classes.flex}>
-            <div className={classes.item}>
+        {usersCount === undefined || usersInPyramidCount === undefined || usersCountToday === undefined ? (
+          <>
+          <img src={loading} alt="" />
+          </>
+        ) : (
+          <div className={classes.cc}>
+            <div className={classes.flex}>
+              <div className={classes.item}>
+                <div className={classes.title}>
+                  All members
+                </div>
+                <div className={classes.box}>
+                  {!usersCount ? '--' : numberFormat(usersCount)}
+                </div>
+              </div>
+              <div className={classes.item}>
+                <div className={classes.title}>
+                  Today's members
+                </div>
+                <div className={classes.box}>
+                  {!usersCountToday ? '--' : numberFormat(usersCountToday)}
+                </div>
+              </div>
+              <div className={classes.item}>
+                <div className={classes.title}>
+                  All members in the pyramid
+                </div>
+                <div className={classes.box}>
+                  {!usersInPyramidCount ? '--' : numberFormat(usersInPyramidCount)}
+                </div>
+              </div>
+            </div>
+            <div className={classes.graph}>
               <div className={classes.title}>
-                All members
+                Number of new users per day
               </div>
-              <div className={classes.box}>
-                {!usersCount ? '--' : numberFormat(usersCount)}
-              </div>
+              <UsersGraph chart={usersByDay}/>
             </div>
-            <div className={classes.item}>
+            <div className={classes.table}>
               <div className={classes.title}>
-                Today's members
+                Users rankings
               </div>
-              <div className={classes.box}>
-                {!usersCountToday ? '--' : numberFormat(usersCountToday)}
-              </div>
+              <MembersTable pagination={pagination} fetchData={fetchData}/>
             </div>
-            <div className={classes.item}>
-              <div className={classes.title}>
-                All members in the pyramid
+            {width < 1550 &&
+              <div className={classes.adsDeskopHorizontal}>
+                <Adsense
+                  client="ca-pub-9350149521504088"
+                  slot="8865999985"
+                  style={{ display: 'block' }}
+                  data-full-width-responsive="true"
+                  layout="in-article"
+                />
               </div>
-              <div className={classes.box}>
-                {!usersInPyramidCount ? '--' : numberFormat(usersInPyramidCount)}
-              </div>
-            </div>
+            }
           </div>
-          <div className={classes.graph}>
-            <div className={classes.title}>
-              Number of new users per day
-            </div>
-            <UsersGraph chart={usersByDay}/>
-          </div>
-          <div className={classes.table}>
-            <div className={classes.title}>
-              Users rankings
-            </div>
-            <MembersTable pagination={pagination} fetchData={fetchData}/>
-          </div>
-          {width < 1550 &&
-            <div className={classes.adsDeskopHorizontal}>
-              <Adsense
-                client="ca-pub-9350149521504088"
-                slot="8865999985"
-                style={{ display: 'block' }}
-                data-full-width-responsive="true"
-                layout="in-article"
-              />
-            </div>
-          }
-      </div>
+        )}
+        
       </div>
     </>
     
