@@ -1,20 +1,17 @@
-import { Member } from '../models/Member';
+import { Member } from '../models/Member'
 
-import { Action } from './actions';
+import { Action } from './actions'
 
 export interface State {
-  member?: Member;
+  member?: Member
 }
 
-export default function rootReducer(
-  state: State = {  },
-  action: Action,
-) {
+export default function rootReducer(state: State = {}, action: Action) {
   switch (action.type) {
     case 'LOGIN':
-      return { ...state, member: action.member };
+      return { ...state, member: action.member }
 
     default:
-      return state;
+      return state
   }
 }

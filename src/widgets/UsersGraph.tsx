@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { createUseStyles } from 'react-jss';
+import { useState } from 'react'
+import { createUseStyles } from 'react-jss'
 
 import {
   Bar,
@@ -9,56 +9,46 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts';
-import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart';
-import { humanNumber } from '../models';
-import { UsersByDay } from '../repositories/StatisticsRepository';
+} from 'recharts'
+import { CategoricalChartState } from 'recharts/types/chart/generateCategoricalChart'
+import { humanNumber } from '../models'
+import { UsersByDay } from '../repositories/StatisticsRepository'
 
 interface P {
-  chart: UsersByDay[];
+  chart: UsersByDay[]
 }
 
 function UsersGraph({ chart }: P) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [focusBar, setFocusBar] = useState<number>();
+  const [focusBar, setFocusBar] = useState<number>()
   const handleMouseMove = (state: CategoricalChartState) =>
-    setFocusBar(state.isTooltipActive ? state.activeTooltipIndex : undefined);
+    setFocusBar(state.isTooltipActive ? state.activeTooltipIndex : undefined)
 
   if (!chart) {
-    return <div className={classes.empty}>No activity yet</div>;
+    return <div className={classes.empty}>No activity yet</div>
   }
 
   return (
     <>
       {chart.length === 0 ? (
-          <div className={classes.empty}>No users found in pyramid!</div>
+        <div className={classes.empty}>No users found in pyramid!</div>
       ) : (
         <div className={classes.box}>
-          <ResponsiveContainer width="99%">
+          <ResponsiveContainer width='99%'>
             <BarChart
               data={chart}
               onMouseMove={handleMouseMove}
               margin={{ left: 10, right: 20, top: 20, bottom: 20 }}
             >
-              <XAxis
-                dataKey="date"
-                stroke={'white'}
-              />
-              <YAxis
-                dataKey="count"
-                stroke={'white'}
-              />
+              <XAxis dataKey='date' stroke={'white'} />
+              <YAxis dataKey='count' stroke={'white'} />
 
-              <Bar dataKey="count">
+              <Bar dataKey='count'>
                 {chart.map((entry, index) => (
                   <Cell
                     key={index}
-                    fill={
-                      focusBar === index
-                        ? '#6b757e'
-                        : 'grey'
-                    }
+                    fill={focusBar === index ? '#6b757e' : 'grey'}
                   />
                 ))}
               </Bar>
@@ -67,11 +57,11 @@ function UsersGraph({ chart }: P) {
                 cursor={false}
                 content={({ active, payload }) => {
                   if (!payload || payload.length === 0 || !payload[0].payload)
-                    return;
+                    return
 
                   const item = chart.find(
-                    i => i.date === payload[0].payload.date,
-                  );
+                    (i) => i.date === payload[0].payload.date
+                  )
                   if (active && item) {
                     return (
                       <div className={classes.tooltip}>
@@ -82,9 +72,9 @@ function UsersGraph({ chart }: P) {
                           <div>{humanNumber(item.count)}</div>
                         </div>
                       </div>
-                    );
+                    )
                   }
-                  return null;
+                  return null
                 }}
               />
             </BarChart>
@@ -92,10 +82,10 @@ function UsersGraph({ chart }: P) {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default UsersGraph;
+export default UsersGraph
 
 const useStyles = createUseStyles(
   () => ({
@@ -130,18 +120,17 @@ const useStyles = createUseStyles(
       lineHeight: '20px',
     },
 
-    date:{
+    date: {
       fontSize: '14px',
       color: 'gray',
       borderBottomColor: '#ffffff8c',
       borderBottom: '2px',
-      borderBottomStyle: 'solid'
+      borderBottomStyle: 'solid',
     },
 
-    count:{
-      marginTop:'10px'
-    }
-
+    count: {
+      marginTop: '10px',
+    },
   }),
-  { },
-);
+  {}
+)

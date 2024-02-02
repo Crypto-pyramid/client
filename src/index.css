@@ -3,8 +3,8 @@ body {
   font-family: 'courier';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {

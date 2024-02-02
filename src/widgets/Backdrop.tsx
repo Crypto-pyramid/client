@@ -1,17 +1,17 @@
-import classNames from 'classnames';
-import React, { PropsWithChildren } from 'react';
-import { createPortal } from 'react-dom';
-import { createUseStyles } from 'react-jss';
+import classNames from 'classnames'
+import React, { PropsWithChildren } from 'react'
+import { createPortal } from 'react-dom'
+import { createUseStyles } from 'react-jss'
 
 type P = PropsWithChildren<
   React.HtmlHTMLAttributes<HTMLDivElement> & {
-    transparent?: boolean;
+    transparent?: boolean
     // onClick?: () => void;
   }
->;
+>
 
 function Backdrop({ className, style, children, transparent, onClick }: P) {
-  const classes = useStyles({ transparent });
+  const classes = useStyles({ transparent })
 
   return createPortal(
     <div
@@ -21,14 +21,14 @@ function Backdrop({ className, style, children, transparent, onClick }: P) {
     >
       {children}
     </div>,
-    document.body,
-  );
+    document.body
+  )
 }
 
-export default Backdrop;
+export default Backdrop
 
 interface SP {
-  transparent?: boolean;
+  transparent?: boolean
 }
 
 const useStyles = createUseStyles(
@@ -53,5 +53,5 @@ const useStyles = createUseStyles(
       to: { opacity: 1 },
     },
   }),
-  {},
-);
+  {}
+)

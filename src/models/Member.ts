@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export class MemberForm {
   constructor(
@@ -7,35 +7,28 @@ export class MemberForm {
     public readonly description?: string,
     public readonly twitter?: string,
     public readonly instagram?: string,
-    public readonly site?: string,
+    public readonly site?: string
   ) {}
 
   patch<K extends keyof MemberForm>(key: K, value: MemberForm[K]) {
     const { name, portrait, description, twitter, instagram, site } =
-      Object.assign({}, this, { [key]: value });
+      Object.assign({}, this, { [key]: value })
 
-    return new MemberForm(
-      name,
-      portrait,
-      description,
-      twitter,
-      instagram,
-      site,
-    );
+    return new MemberForm(name, portrait, description, twitter, instagram, site)
   }
 
   check(): Partial<Record<keyof MemberForm, boolean>> {
     return {
       site: this.checksite(),
-    };
+    }
   }
 
   private checksite() {
     const regex = new RegExp(
-      '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?',
-    );
+      '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+    )
 
-    return !this.site || this.site.search(regex) !== -1;
+    return !this.site || this.site.search(regex) !== -1
   }
 
   flush() {
@@ -46,7 +39,7 @@ export class MemberForm {
       twitter: this.twitter,
       instagram: this.instagram,
       site: this.site,
-    };
+    }
   }
 }
 
@@ -54,36 +47,35 @@ export class Member extends MemberForm {
   static readonly ANONYMOUS = new Member(
     '0x0000000000000000000000000000000000000000',
     -1
-  );
+  )
 
   static bless(data: MemberJSON): Member {
-    return new Member(
-      data.address,
-      data.id
-    );
+    return new Member(data.address, data.id)
   }
 
-  constructor(readonly address: string, readonly id: number){
-    super();
+  constructor(
+    readonly address: string,
+    readonly id: number
+  ) {
+    super()
   }
 
   get canonicalTwitter(): string | undefined {
-    return canonical(this.twitter, 'https://www.twitter.com/');
+    return canonical(this.twitter, 'https://www.twitter.com/')
   }
 
   get canonicalInstagram(): string | undefined {
-    return canonical(this.instagram, 'https://www.instagram.com/');
+    return canonical(this.instagram, 'https://www.instagram.com/')
   }
 
-
   get canonicalsite(): string | undefined {
-    return canonical(this.site, '//');
+    return canonical(this.site, '//')
   }
 
   get portraitAsCSSImage(): string {
     return this.portrait
       ? `url(${this.portrait})`
-      : this.defaultPortraitAsCSSImage;
+      : this.defaultPortraitAsCSSImage
   }
 
   get defaultPortraitAsCSSImage(): string {
@@ -98,36 +90,38 @@ export class Member extends MemberForm {
       'linear-gradient(139deg, #fa8bff 16%, #2cd1ff 60%, #2cff88)',
       'linear-gradient(to right, #fad961, #ff5acd)',
       'linear-gradient(51deg, #4158d0 11%, #c751c0 50%, #ffcb70 96%)',
-    ];
+    ]
 
-    let r = this.address.split("").reduce((a,c) => a + c.charCodeAt(0) , 0) % defaultPortraits.length;
+    let r =
+      this.address.split('').reduce((a, c) => a + c.charCodeAt(0), 0) %
+      defaultPortraits.length
     if (r < 0) {
-      r += defaultPortraits.length;
+      r += defaultPortraits.length
     }
 
-    return defaultPortraits[r];
+    return defaultPortraits[r]
   }
 
   get defaultPortrait(): React.CSSProperties {
-    return { backgroundImage: this.defaultPortraitAsCSSImage };
+    return { backgroundImage: this.defaultPortraitAsCSSImage }
   }
 }
 
 function canonical(
   url: string | undefined,
-  prefix: string,
+  prefix: string
 ): string | undefined {
   if (!url) {
-    return undefined;
+    return undefined
   }
   if (url.match(/^https?:\/\//)) {
-    return url;
+    return url
   }
 
-  return prefix + url;
+  return prefix + url
 }
 
 export interface MemberJSON {
-  readonly address: string;
-  readonly id: number;
+  readonly address: string
+  readonly id: number
 }

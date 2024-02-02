@@ -47,7 +47,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier -w ."
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +71,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.191",
     "@types/react-onclickoutside": "^6.7.4",
-    "react-infinite-scroll-component": "^6.1.0"
+    "react-infinite-scroll-component": "^6.1.0",
+    "prettier": "3.1.0"
   }
 }

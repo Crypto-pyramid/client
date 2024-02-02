@@ -1,20 +1,20 @@
-import classNames from 'classnames';
-import { createUseStyles } from 'react-jss';
-import { Follower } from '../repositories/StatisticsRepository';
-import { Pagination } from '../utils/Pagination';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import classNames from 'classnames'
+import { createUseStyles } from 'react-jss'
+import { Follower } from '../repositories/StatisticsRepository'
+import { Pagination } from '../utils/Pagination'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 interface P {
-  pagination: Pagination<Follower>;
+  pagination: Pagination<Follower>
   fetchData: (last: Pagination<Follower>) => Promise<void>
 }
 
 function MembersTable({ pagination, fetchData }: P) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <>
-    {pagination.total === 0 ? (
+      {pagination.total === 0 ? (
         <div className={classes.empty}>No users with followers found!</div>
       ) : (
         <InfiniteScroll
@@ -23,44 +23,42 @@ function MembersTable({ pagination, fetchData }: P) {
           hasMore={!pagination.noMore}
           loader={<></>}
           scrollThreshold={'200px'}
-          scrollableTarget="flows"
+          scrollableTarget='flows'
         >
-        <div className={classNames(classes.content, 'list')}>
-          <table className={classes.table}>
-            <thead>
-              <tr>
-                <th />
-                {/*<th>Name</th>*/}
-                <th className={classes.left}>Wallet</th>
-                <th className={classes.right}>Followers</th>
-              </tr>
-            </thead>
-            
+          <div className={classNames(classes.content, 'list')}>
+            <table className={classes.table}>
+              <thead>
+                <tr>
+                  <th />
+                  {/*<th>Name</th>*/}
+                  <th className={classes.left}>Wallet</th>
+                  <th className={classes.right}>Followers</th>
+                </tr>
+              </thead>
+
               <tbody>
-                
-                  {pagination.data.map((follower, index) => (
-                    <tr key={index}>
-                      <td className={classes.index}>{index + 1}</td>
-                      {/*<td>{follower.user.portrait} {follower.user.name} </td>*/}
-                      <td className={classes.singleLineText}>
-                        {/*<Link to={`/user/${follower.user.address}`}>*/}
-                          {follower.user.address}
-                        {/*</Link>*/}
-                      </td>
-                      <td className={classes.right}>{follower.count}</td>
-                    </tr>
-                  ))}
-                
+                {pagination.data.map((follower, index) => (
+                  <tr key={index}>
+                    <td className={classes.index}>{index + 1}</td>
+                    {/*<td>{follower.user.portrait} {follower.user.name} </td>*/}
+                    <td className={classes.singleLineText}>
+                      {/*<Link to={`/user/${follower.user.address}`}>*/}
+                      {follower.user.address}
+                      {/*</Link>*/}
+                    </td>
+                    <td className={classes.right}>{follower.count}</td>
+                  </tr>
+                ))}
               </tbody>
-          </table>
-        </div>
-      </InfiniteScroll>
+            </table>
+          </div>
+        </InfiniteScroll>
       )}
     </>
-  );
+  )
 }
 
-export default MembersTable;
+export default MembersTable
 
 const useStyles = createUseStyles(
   () => ({
@@ -76,7 +74,7 @@ const useStyles = createUseStyles(
       },
     },
 
-    empty:{
+    empty: {
       padding: '20px 10px',
       borderRadius: '10px',
       boxSizing: 'border-box',
@@ -91,18 +89,18 @@ const useStyles = createUseStyles(
       width: '100%',
       fontSize: '18px',
       borderSpacing: '0em',
-      borderRadius:'10px',
-      borderCollapse:'collapse',
-      overflow:'hidden',
+      borderRadius: '10px',
+      borderCollapse: 'collapse',
+      overflow: 'hidden',
       '&>thead': {
         position: 'sticky',
         top: '0',
         zIndex: '1',
         background: '#27282926',
-        borderBottom:'1px solid white',
+        borderBottom: '1px solid white',
         '&>tr': {
           '&>th': {
-            borderBottom:'2px solid #ffffff8c',
+            borderBottom: '2px solid #ffffff8c',
             paddingBottom: '5px',
             paddingTop: '5px',
             '&:last-child': {
@@ -142,12 +140,12 @@ const useStyles = createUseStyles(
     singleLineText: {
       textAlign: 'left',
       '@media only screen and (max-width: 600px)': {
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          maxWidth: '300px',
-          margin: 'auto'
-      }
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        maxWidth: '300px',
+        margin: 'auto',
+      },
     },
 
     topOwners: {
@@ -170,5 +168,5 @@ const useStyles = createUseStyles(
       textAlign: 'left',
     },
   }),
-  { },
-);
+  {}
+)

@@ -1,28 +1,31 @@
-import React, { PropsWithChildren } from 'react';
-import { createUseStyles } from 'react-jss';
+import React, { PropsWithChildren } from 'react'
+import { createUseStyles } from 'react-jss'
 
-import classNames from 'classnames';
+import classNames from 'classnames'
 
-import Backdrop from './Backdrop';
+import Backdrop from './Backdrop'
 
-
-function Modal({ className, children }: PropsWithChildren<{ className?: string; }>) {
-  const classes = useStyles();
+function Modal({
+  className,
+  children,
+}: PropsWithChildren<{ className?: string }>) {
+  const classes = useStyles()
 
   return (
     <Backdrop>
-      <div className={classNames(classes.c, className)}>
-        {children}
-      </div>
+      <div className={classNames(classes.c, className)}>{children}</div>
     </Backdrop>
-  );
+  )
 }
 
-export default Modal;
+export default Modal
 
-const useStyles = createUseStyles(() => ({
-  c: {
-    borderRadius: '10px',
-    background: 'white',
-  },
-}), { });
+const useStyles = createUseStyles(
+  () => ({
+    c: {
+      borderRadius: '10px',
+      background: 'white',
+    },
+  }),
+  {}
+)
