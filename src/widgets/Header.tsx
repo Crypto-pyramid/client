@@ -17,7 +17,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import useWindowDimensions from './useWindowDimensions'
 
 export const HeaderHeight: number = 80
-export const MaxWidth: number = 1920
 
 interface P {
   onLogin: () => void
@@ -174,7 +173,6 @@ const useStyles = createUseStyles(() => ({
     alignItems: 'center',
     boxSizing: 'border-box',
     width: '100%',
-    maxWidth: `${MaxWidth}px`,
     height: '100%',
     padding: '0 30px',
     margin: '0 auto',
