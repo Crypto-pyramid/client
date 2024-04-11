@@ -6,6 +6,7 @@ import { Member } from '../models/Member'
 import { useSelector } from 'react-redux'
 import { State } from '../redux/reducers'
 import { useAlert } from '../widgets/Alert'
+import ReactGA from 'react-ga4'
 
 interface P {
   connecting: boolean
@@ -35,6 +36,11 @@ function ConnectWallet({ connecting, onConnected, onDisConnect }: P) {
 
   const connect = useCallback(async () => {
     try {
+      ReactGA.event({
+        category: 'Wallet',
+        action: 'Try login',
+      })
+
       setLoading(true)
       if (!chainRepo.provider) {
         toast('Install the MetaMask first', -1)

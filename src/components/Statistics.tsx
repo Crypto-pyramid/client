@@ -9,15 +9,13 @@ import UsersGraph from '../widgets/UsersGraph'
 import MembersTable from '../widgets/MembersTable'
 import { Pagination } from '../utils/Pagination'
 import { numberFormat } from '../models'
-import useWindowDimensions from '../widgets/useWindowDimensions'
-import loading from '../assets/loading.gif'
+import animationData from '../assets/Animation.json'
+import Lottie from 'lottie-react'
 
 function Statistics() {
   const classes = useStyles()
 
   const repo = useContext(StatisticsRepository.context)
-
-  const { width } = useWindowDimensions()
 
   const [usersCount, setUsersCount] = useState<number | undefined>(undefined)
   const [usersInPyramidCount, setUsersInPyramidCount] = useState<
@@ -57,6 +55,7 @@ function Statistics() {
       .catch(() => setUsersByDay([]))
 
     setFirstLoad(false)
+    // eslint-disable-next-line
   }, [])
 
   const fetchData = useCallback(
@@ -81,9 +80,9 @@ function Statistics() {
       {usersCount === undefined ||
       usersInPyramidCount === undefined ||
       usersCountToday === undefined ? (
-        <>
-          <img src={loading} alt='' />
-        </>
+        <div className={classes.animation}>
+          <Lottie animationData={animationData} loop autoplay />
+        </div>
       ) : (
         <div className={classes.cc}>
           <div className={classes.flex}>
@@ -176,5 +175,11 @@ const useStyles = createUseStyles(() => ({
   table: {
     marginTop: '50px',
     maxHeight: '400px',
+  },
+
+  animation: {
+    width: '30vw',
+    height: '30vh',
+    margin: 'auto',
   },
 }))

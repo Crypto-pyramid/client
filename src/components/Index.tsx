@@ -11,6 +11,7 @@ import Home from './Home'
 import ConnectWallet from './ConnectWallet'
 import Follow from './Follow'
 import Statistics from './Statistics'
+import ReactGA from 'react-ga4'
 
 function Index() {
   const classes = useStyles()
@@ -48,6 +49,10 @@ function Index() {
     (member?: Member) => {
       if (!!member) {
         dispatch(login(member))
+        ReactGA.event({
+          category: 'Wallet',
+          action: 'Login Success',
+        })
       }
       setConnecting(false)
     },

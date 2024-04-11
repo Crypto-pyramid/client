@@ -11,6 +11,7 @@ import { useAlert } from '../widgets/Alert'
 import { ChainRepository } from '../repositories/ChainRepository'
 import crypto_pyramid from '../assets/abi/crypto_pyramid.json'
 import { AbiItem } from 'web3-utils'
+import ReactGA from 'react-ga4'
 
 function Follow() {
   const classes = useStyles()
@@ -44,13 +45,26 @@ function Follow() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    ReactGA.event({
+      category: 'Follow',
+      action: 'Follow Try',
+    })
+
     if (!member?.address || !Web3.utils.isAddress(member?.address)) {
       toast('Your address is not valid!', -1)
+      ReactGA.event({
+        category: 'FollowError1',
+        action: 'FollowError1',
+      })
       return
     }
 
     if (!id || !follower?.address || !Web3.utils.isAddress(follower?.address)) {
       toast('No user to follow is selected!', -1)
+      ReactGA.event({
+        category: 'FollowError2',
+        action: 'FollowError2',
+      })
       return
     }
 
@@ -79,16 +93,29 @@ function Follow() {
           .then((response: number) => {
             setHasFollowed(true)
             setLink(window.location.origin + '/#/' + response)
+            ReactGA.event({
+              category: 'FollowSuccess',
+              action: 'FollowSuccess',
+            })
           })
-          .catch(() =>
+          .catch(() => {
             toast(
               'An error occurred on server while trying to follow the user!',
               -1
             )
-          )
+            ReactGA.event({
+              category: 'FollowError3',
+              action: 'FollowError3',
+            })
+          })
       })
       .catch((error: any) => {
         toast('Transaction failed with error: ' + error.message, -1, 6000)
+        ReactGA.event({
+          category: 'FollowError4',
+          action: 'FollowError4',
+        })
+
         return
       })
   }

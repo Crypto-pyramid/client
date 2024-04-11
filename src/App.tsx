@@ -5,6 +5,7 @@ import store from './redux/store'
 import Alert from './widgets/Alert'
 import axios from 'axios'
 import { setAuthToken } from './repositories/SecurityRepository'
+import ReactGA from 'react-ga4'
 
 axios.defaults.baseURL = 'https://crypto-pyramid.azurewebsites.net/api/v1'
 

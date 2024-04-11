@@ -1,6 +1,5 @@
 import { createUseStyles } from 'react-jss'
 import useWindowDimensions from '../widgets/useWindowDimensions'
-import { Adsense } from '@ctrl/react-adsense'
 
 function Home() {
   const classes = useStyles()
