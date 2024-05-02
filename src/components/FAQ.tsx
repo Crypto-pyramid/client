@@ -8,7 +8,7 @@ function FAQ() {
   return (
     <>
       <Helmet>
-        <link rel='canonical' href='https://crypto-pyramid.com/faq' />
+        <link rel='canonical' href='https://crypto-pyramid.com/#/faq' />
         <title>CryptoPyramid FAQ - Your Questions Answered</title>
         <meta
           name='description'

@@ -124,7 +124,7 @@ function Follow() {
   return (
     <div className={classes.wrapper}>
       <Helmet>
-        <link rel='canonical' href={`https://crypto-pyramid.com/${id}`} />
+        <link rel='canonical' href={`https://crypto-pyramid.com/#/${id}`} />
         <title>Follow {follower?.address} - CryptoPyramid</title>
         <meta
           name='description'

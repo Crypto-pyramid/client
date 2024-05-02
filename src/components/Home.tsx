@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       <Helmet>
-        <link rel='canonical' href='https://crypto-pyramid.com' />
+        <link rel='canonical' href='https://crypto-pyramid.com/#/' />
         <title>CryptoPyramid - The Ultimate Pyramid Scheme</title>
         <meta
           name='description'

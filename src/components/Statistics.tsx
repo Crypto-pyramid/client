@@ -77,7 +77,7 @@ function Statistics() {
   return (
     <div className={classes.c}>
       <Helmet>
-        <link rel='canonical' href='https://crypto-pyramid.com/stats' />
+        <link rel='canonical' href='https://crypto-pyramid.com/#/stats' />
       </Helmet>
       <h1>Statistics</h1>
 
