@@ -12,6 +12,7 @@ import ConnectWallet from './ConnectWallet'
 import Follow from './Follow'
 import Statistics from './Statistics'
 import ReactGA from 'react-ga4'
+import FAQ from './FAQ'
 
 function Index() {
   const classes = useStyles()
@@ -75,6 +76,7 @@ function Index() {
           <Route path='/:id' element={<Follow />} />
           <Route path='/stats' element={<Statistics />} />
           <Route path='/' element={<Home />} />
+          <Route path='/faq' element={<FAQ />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </div>

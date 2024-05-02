@@ -12,6 +12,7 @@ import { ChainRepository } from '../repositories/ChainRepository'
 import crypto_pyramid from '../assets/abi/crypto_pyramid.json'
 import { AbiItem } from 'web3-utils'
 import ReactGA from 'react-ga4'
+import { Helmet } from 'react-helmet'
 
 function Follow() {
   const classes = useStyles()
@@ -122,6 +123,14 @@ function Follow() {
 
   return (
     <div className={classes.wrapper}>
+      <Helmet>
+        <link rel='canonical' href={`https://crypto-pyramid.com/${id}`} />
+        <title>Follow {follower?.address} - CryptoPyramid</title>
+        <meta
+          name='description'
+          content={`Follow user with wallet address ${follower?.address} on CryptoPyramid`}
+        />
+      </Helmet>
       <main className={classes.content}>
         <h2>
           Follow user with wallet address <br />

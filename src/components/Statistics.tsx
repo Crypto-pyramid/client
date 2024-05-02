@@ -11,6 +11,7 @@ import { Pagination } from '../utils/Pagination'
 import { numberFormat } from '../models'
 import animationData from '../assets/Animation.json'
 import Lottie from 'lottie-react'
+import { Helmet } from 'react-helmet'
 
 function Statistics() {
   const classes = useStyles()
@@ -75,6 +76,9 @@ function Statistics() {
 
   return (
     <div className={classes.c}>
+      <Helmet>
+        <link rel='canonical' href='https://crypto-pyramid.com/stats' />
+      </Helmet>
       <h1>Statistics</h1>
 
       {usersCount === undefined ||

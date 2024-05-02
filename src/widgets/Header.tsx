@@ -122,6 +122,9 @@ function Header({ onLogin, onLogout }: P) {
               <Link to='/stats' className={classes.quickLink}>
                 Statistics
               </Link>
+              <Link to='/faq' className={classes.quickLink}>
+                FAQ
+              </Link>
               <HeaderPortrait onLogin={onLogin} onLogout={onLogout} />
             </div>
           </>
